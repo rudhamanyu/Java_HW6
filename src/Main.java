@@ -47,14 +47,16 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         while (true) {
             System.out.print("""
-                    \nМеню:
+                    
+                    Меню:
                     1 - Бренд
                     2 - ОЗУ
                     3 - Объем ЖД
                     4 - Операционная система
                     5 - Цвет
-                    6 - Просмотр ноутбуков по выбранным критериям\n
-                    Введите цифру, соответствующую необходимому критерию: """);
+                    6 - Просмотр ноутбуков по выбранным критериям
+                    
+                    Введите цифру, соответствующую необходимому критерию:""");
             String choice = scan.next();
 
             switch (choice) {
@@ -106,7 +108,7 @@ public class Main {
     public static List<Laptop> getResultListLaptop(List<Laptop> laptopList, Map<String, Object> map) {
         List<Laptop> resaltList = new ArrayList<>();
         for (Laptop item : laptopList) {
-            if (item.compareBrand(map) && item.compareColor(map) && item.compareHD(map) && item.compareOS(map) && item.compareRam(map)) {
+            if (item.compareParams(map)) {
                 resaltList.add(item);
             }
         }
@@ -127,7 +129,6 @@ public class Main {
             return false;
         }
     }
-
 }
 
 

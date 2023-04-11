@@ -1,11 +1,11 @@
 import java.util.Map;
 
 public class Laptop {
-    String brand;
-    Integer size_RAM;
-    Integer size_HD;
-    String name_OS;
-    String color;
+    private String brand;
+    private Integer size_RAM;
+    private Integer size_HD;
+    private String name_OS;
+    private String color;
 
     public Laptop(String brand, Integer size_RAM, Integer size_HD, String name_OS, String color) {
         this.brand = brand;
@@ -20,37 +20,12 @@ public class Laptop {
         return "Бренд: " + brand + ", ОЗУ: " + size_RAM + ", Объем ЖД: " + size_HD + ", " +
                 "Операционная система: " + name_OS + ", Цвет: " + color;
     }
-
-    public boolean compareBrand(Map<String, Object> map) {
-        if (map.containsKey("brand") && brand.equalsIgnoreCase((String) map.get("brand"))) {
-            return true;
-        }
-        return !map.containsKey("brand");
-    }
-    public boolean compareRam(Map<String, Object> map) {
-        if (map.containsKey("size_RAM") && (Integer) map.get("size_RAM") <= size_RAM) {
-            return true;
-        }
-        return !map.containsKey("size_RAM");
-    }
-
-    public boolean compareHD(Map<String, Object> map) {
-        if (map.containsKey("size_HD") && (Integer) map.get("size_HD") <= size_HD){
-            return true;
-            }
-        return !map.containsKey("size_HD");
-    }
-    public boolean compareOS(Map<String, Object> map) {
-        if (map.containsKey("name_OS") && name_OS.equalsIgnoreCase((String) map.get("name_OS"))) {
-            return true;
-        }
-        return !map.containsKey("name_OS");
-    }
-    public boolean compareColor(Map<String, Object> map) {
-        if (map.containsKey("color") && color.equalsIgnoreCase((String) map.get("color"))){
-            return true;
-        }
-        return !map.containsKey("color");
+    public boolean compareParams(Map<String, Object> map) {
+        return (!map.containsKey("brand") || name_OS.equalsIgnoreCase((String) map.get("brand"))) &&
+                (!map.containsKey("size_RAM") || (Integer) map.get("size_RAM") <= size_RAM) &&
+                (!map.containsKey("size_HD") || (Integer) map.get("size_HD") <= size_HD) &&
+                (!map.containsKey("name_OS") || name_OS.equalsIgnoreCase((String) map.get("name_OS"))) &&
+                (!map.containsKey("color") || color.equalsIgnoreCase((String) map.get("color")));
     }
 }
 
